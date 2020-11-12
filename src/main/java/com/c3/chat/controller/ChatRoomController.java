@@ -5,6 +5,7 @@ import com.c3.chat.model.ChatID;
 import com.c3.chat.model.ChatMessage;
 import com.c3.chat.service.ChatMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.websocket.EncodeException;
 import javax.websocket.OnMessage;
@@ -13,6 +14,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
+@CrossOrigin
 @ServerEndpoint("/chat/{userId}/{friendId}")
 public class ChatRoomController {
 

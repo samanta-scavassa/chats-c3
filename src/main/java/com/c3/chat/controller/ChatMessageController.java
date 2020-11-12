@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1/chat/message")
 public class ChatMessageController {
 
