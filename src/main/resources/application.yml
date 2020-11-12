@@ -1,0 +1,33 @@
+# SERVER
+server:
+  port: 3011
+
+spring:
+  application:
+    name: 'chat'
+
+  # SQL
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/c3_chat?createDatabaseIfNotExist=true&useSSL=false
+    username: postgres
+    password: admin
+
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+
+# EUREKA
+eureka:
+  instance:
+    hostname: chatc3.herokuapp.com
+    nonSecurePort: 80
+  client:
+    service-url:
+      defaultZone: https://eurekaserverc3.herokuapp.com/eureka/
