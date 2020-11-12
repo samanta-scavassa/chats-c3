@@ -1,16 +1,15 @@
 package com.c3.chat.repository;
 
 import com.c3.chat.model.Chat;
-import com.c3.chat.model.ChatID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface ChatRepository extends JpaRepository<Chat, ChatID> {
+public interface ChatRepository extends JpaRepository<Chat, Long> {
 
-    @Query( "select c from Chat c where c.chatID.userId = :userId")
+    @Query( "select c from Chat c where c.userId = :userId")
     Optional<Chat> findByUserId(@Param("userId") Long userId);
 
 }

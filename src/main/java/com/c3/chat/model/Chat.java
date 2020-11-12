@@ -21,8 +21,16 @@ public class Chat implements Serializable {
 
     private static final long serialVersionUID = 102448660256736288L;
 
-    @EmbeddedId
-    private ChatID chatID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private Long chatId;
+
+    @Column(name="user_id", nullable = false)
+    private Long userId;
+
+    @Column(name="friend_id", nullable = false)
+    private Long frienId;
 
     @Column(name="created_at", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")

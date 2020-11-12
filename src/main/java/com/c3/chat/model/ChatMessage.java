@@ -23,7 +23,7 @@ public class ChatMessage {
     private Long id;
 
     @Column(name="chat_id", length = 50, nullable = false)
-    private ChatID chatID;
+    private Long chatId;
 
     @Column(name="message")
     private String message;
@@ -36,8 +36,8 @@ public class ChatMessage {
     private LocalDate createdAt;
 
 
-    public ChatMessage(ChatID chatID, String message){
-        this.chatID = chatID;
+    public ChatMessage(Long chatId, String message){
+        this.chatId = chatId;
         this.message = message;
         this.createdAt = LocalDate.now();
     }

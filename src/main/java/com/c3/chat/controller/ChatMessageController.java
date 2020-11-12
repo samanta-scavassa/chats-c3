@@ -1,6 +1,5 @@
 package com.c3.chat.controller;
 
-import com.c3.chat.model.ChatID;
 import com.c3.chat.model.ChatMessage;
 import com.c3.chat.service.ChatMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +18,9 @@ public class ChatMessageController {
     private ChatMessageService chatMessageService;
 
     @GetMapping("/{userId}/{friendId}")
-    public ResponseEntity<ChatMessage> getMessageByChatId(@PathVariable("chatId") Long userId,
-                                                          @PathVariable("friendId") Long friendId) {
+    public ResponseEntity<ChatMessage> getMessageByChatId(@PathVariable("chatId") Long chatId) {
 
-        ChatID chatID = new ChatID(userId, friendId);
-
-        Optional<ChatMessage> message = chatMessageService.getMessageByChatId(chatID);
+        Optional<ChatMessage> message = chatMessageService.getMessageByChatId(chatId);
 
         return message
                 .map(ResponseEntity::ok)
