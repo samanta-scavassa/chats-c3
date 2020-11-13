@@ -22,4 +22,7 @@ public class ChatService {
         return chatRepository.save(chat);
     }
 
+    public Optional<Chat> findbyId(Long id) {
+        return chatRepository.findById(id);
+    }
 }

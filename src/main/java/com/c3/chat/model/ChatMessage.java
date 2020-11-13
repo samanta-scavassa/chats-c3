@@ -22,8 +22,9 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="chat_id", length = 50, nullable = false)
-    private Long chatId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "chat_id")
+    private Chat chatId;
 
     @Column(name="message")
     private String message;
@@ -36,7 +37,7 @@ public class ChatMessage {
     private LocalDate createdAt;
 
 
-    public ChatMessage(Long chatId, String message){
+    public ChatMessage(Chat chatId, String message){
         this.chatId = chatId;
         this.message = message;
         this.createdAt = LocalDate.now();

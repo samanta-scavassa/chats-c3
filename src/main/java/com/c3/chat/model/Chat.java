@@ -36,7 +36,7 @@ public class Chat implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
-    @OneToMany
+    @OneToMany(mappedBy = "chatId")
     private List<ChatMessage> messages;
 
 }

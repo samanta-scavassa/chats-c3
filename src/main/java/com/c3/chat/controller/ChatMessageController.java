@@ -17,7 +17,7 @@ public class ChatMessageController {
     @Autowired
     private ChatMessageService chatMessageService;
 
-    @GetMapping("/{userId}/{friendId}")
+    @GetMapping("/{chatId}")
     public ResponseEntity<ChatMessage> getMessageByChatId(@PathVariable("chatId") Long chatId) {
 
         Optional<ChatMessage> message = chatMessageService.getMessageByChatId(chatId);

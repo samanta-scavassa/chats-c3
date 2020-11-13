@@ -18,6 +18,16 @@ public class ChatController {
     private ChatService chatService;
 
     @GetMapping("/{userId}")
+    public ResponseEntity<Chat> getChatById(@PathVariable("chatId") Long chatId) {
+
+        Optional<Chat> chat = chatService.findbyId(chatId);
+
+        return chat
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{userId}")
     public ResponseEntity<Chat> getChatByUserId(@PathVariable("userId") Long userId) {
 
         Optional<Chat> chat = chatService.getChatByUserId(userId);
