@@ -1,22 +1,17 @@
 package com.c3.chat.json;
 
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.File;
+import java.time.LocalDate;
 
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
-public class ChatRoomRequest {
+public class ChatMessageRequestJson {
 
-    private Long userId;
-
-    private Long friendId;
+    private Long chatId;
 
     private String message;
 

@@ -1,7 +1,10 @@
 package com.c3.chat.controller;
 
+import com.c3.chat.json.ChatMessageRequestJson;
+import com.c3.chat.model.Chat;
 import com.c3.chat.model.ChatMessage;
 import com.c3.chat.service.ChatMessageService;
+import com.c3.chat.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,9 @@ public class ChatMessageController {
     @Autowired
     private ChatMessageService chatMessageService;
 
+    @Autowired
+    private ChatService chatService;
+
     @GetMapping("/{chatId}")
     public ResponseEntity<ChatMessage> getMessageByChatId(@PathVariable("chatId") Long chatId) {
 
@@ -28,9 +34,10 @@ public class ChatMessageController {
     }
 
     @PostMapping("/register-message")
-    public ResponseEntity postMessage(@Valid @RequestBody ChatMessage chatMessage) {
+    public ResponseEntity postMessage(@Valid @RequestBody ChatMessageRequestJson request) {
 
         try {
+            ChatMessage chatMessage = new ChatMessage(request);
             chatMessageService.saveChatMessage(chatMessage);
             return ResponseEntity.created(null).build();
         } catch (Exception e) {

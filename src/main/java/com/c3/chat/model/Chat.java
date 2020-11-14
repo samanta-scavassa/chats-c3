@@ -30,7 +30,7 @@ public class Chat implements Serializable {
     private Long userId;
 
     @Column(name="friend_id", nullable = false)
-    private Long frienId;
+    private Long friendId;
 
     @Column(name="created_at", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -39,4 +39,7 @@ public class Chat implements Serializable {
     @OneToMany(mappedBy = "chatId")
     private List<ChatMessage> messages;
 
+    public Chat (Long chatId) {
+        this.chatId = chatId;
+    }
 }

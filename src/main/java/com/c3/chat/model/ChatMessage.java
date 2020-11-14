@@ -1,5 +1,6 @@
 package com.c3.chat.model;
 
+import com.c3.chat.json.ChatMessageRequestJson;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.Getter;
@@ -40,6 +41,13 @@ public class ChatMessage {
     public ChatMessage(Chat chatId, String message){
         this.chatId = chatId;
         this.message = message;
+        this.createdAt = LocalDate.now();
+    }
+
+    public ChatMessage(ChatMessageRequestJson request){
+        this.chatId = new Chat(request.getChatId());
+        this.message = request.getMessage();
+        this.file = request.getFile();
         this.createdAt = LocalDate.now();
     }
 }
