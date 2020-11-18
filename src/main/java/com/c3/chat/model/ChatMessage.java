@@ -23,6 +23,9 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="user_id", nullable = false)
+    private Long userId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_id")
     private Chat chatId;
@@ -38,14 +41,16 @@ public class ChatMessage {
     private LocalDate createdAt;
 
 
-    public ChatMessage(Chat chatId, String message){
+    public ChatMessage(Chat chatId, Long userId, String message){
         this.chatId = chatId;
+        this.userId = userId;
         this.message = message;
         this.createdAt = LocalDate.now();
     }
 
     public ChatMessage(ChatMessageRequestJson request){
         this.chatId = new Chat(request.getChatId());
+        this.userId = request.getUserId();
         this.message = request.getMessage();
         this.file = request.getFile();
         this.createdAt = LocalDate.now();

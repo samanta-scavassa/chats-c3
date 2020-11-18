@@ -13,6 +13,8 @@ public class ChatMessageRequestJson {
 
     private Long chatId;
 
+    private Long userId;
+
     private String message;
 
     private File file;
