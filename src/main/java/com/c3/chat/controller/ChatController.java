@@ -38,11 +38,13 @@ public class ChatController {
     }
 
     @PostMapping("/register-chat")
-    public ResponseEntity postChat(@Valid @RequestBody Chat chat) {
+    public ResponseEntity<Chat> postChat(@Valid @RequestBody Chat chat) {
 
         try {
-           chatService.saveChat(chat);
-            return ResponseEntity.created(null).build();
+           Chat db = chatService.saveChat(chat);
+           return db != null ?
+                   ResponseEntity.ok(db) :
+                   ResponseEntity.notFound().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
