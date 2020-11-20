@@ -36,10 +36,16 @@ public class Chat implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
-    @OneToMany(mappedBy = "chatId")
+    @OneToMany(mappedBy = "chatId", fetch = FetchType.EAGER)
     private List<ChatMessage> messages;
 
     public Chat (Long chatId) {
         this.chatId = chatId;
+    }
+
+    public Chat (Long userId, Long friendId) {
+        this.friendId = friendId;
+        this.userId = userId;
+        this.createdAt = LocalDate.now();
     }
 }
