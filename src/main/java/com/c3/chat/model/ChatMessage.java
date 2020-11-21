@@ -26,7 +26,7 @@ public class ChatMessage {
     private Long userId;
 
     @ManyToOne
-    @JoinColumn(name="cart_id", nullable=false)
+    @JoinColumn(name="chatId", nullable=false)
     @JsonIgnore
     private Chat chatId;
 
