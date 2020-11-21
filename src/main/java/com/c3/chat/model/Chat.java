@@ -13,8 +13,6 @@ import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @Table(name = "chat")
 public class Chat implements Serializable {
@@ -36,7 +34,7 @@ public class Chat implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
-    @OneToMany(mappedBy = "chatId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy= "chatId", fetch = FetchType.EAGER)
     private List<ChatMessage> messages;
 
     public Chat (Long chatId) {
@@ -47,5 +45,9 @@ public class Chat implements Serializable {
         this.friendId = friendId;
         this.userId = userId;
         this.createdAt = LocalDate.now();
+    }
+
+    public String toString () {
+        return "";
     }
 }

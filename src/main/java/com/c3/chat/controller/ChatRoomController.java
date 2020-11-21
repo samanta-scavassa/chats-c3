@@ -50,23 +50,7 @@ public class ChatRoomController {
     public void receiveMessage(Message message, Session session,
                                @PathParam("chatId") Long chatId
                                ) throws IOException, EncodeException {
-        message.setFrom(chatMessage.get(session.getId()));
-        System.out.println(message);
         broadcast(message);
-//        try {
-
-            Chat chat = chatService.findbyId(chatId).get();
-            ChatMessage chatMessage = new ChatMessage(chat, Long.parseLong(message.getFrom()), message.getContent());
-            chatMessageService.saveChatMessage(chatMessage);
-//
-//            WebSocketResponseJson response = new WebSocketResponseJson(request.getFriendId(), request.getMessage());
-//
-//            session.getBasicRemote().sendObject(response);
-//
-//        } catch(RuntimeException | IOException | EncodeException e) {
-//            throw new ChatRoomException("Erro ao enviar mensagem", e.getCause());
-//        }
-
     }
 
     @OnClose

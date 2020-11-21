@@ -2,6 +2,7 @@ package com.c3.chat.model;
 
 import com.c3.chat.json.ChatMessageRequestJson;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +14,6 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @Table(name = "chat_message")
 public class ChatMessage {
@@ -26,8 +25,9 @@ public class ChatMessage {
     @Column(name="user_id", nullable = false)
     private Long userId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "chat_id")
+    @ManyToOne
+    @JoinColumn(name="cart_id", nullable=false)
+    @JsonIgnore
     private Chat chatId;
 
     @Column(name="message")
